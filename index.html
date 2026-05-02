@@ -1,0 +1,2024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Student research team exploring AI in Indian higher education across Tier 1, 2, and 3 institutions. GPAI India Student Community. Free AI Literacy Toolkit available.">
+  <meta name="keywords" content="AI literacy India, AI higher education, GPAI student research, Penta Minds, AI governance India">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="en-IN">
+  <meta name="author" content="Team Penta Minds">
+  <meta property="og:title" content="Penta Minds | AI on the Ground: Voices from Indian Education">
+  <meta property="og:description" content="Student research team studying AI in Indian higher education. Free AI Literacy Toolkit available. GPAI India Student Community.">
+  <!-- UPDATE: add toolkit cover image URL here -->
+  <meta property="og:image" content="https://example.com/toolkit-cover.jpg">
+  <!-- UPDATE: add Netlify URL here -->
+  <meta property="og:url" content="https://example.netlify.app/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_IN">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Penta Minds | AI on the Ground: Voices from Indian Education">
+  <meta name="twitter:description" content="Student research team studying AI in Indian higher education. Free AI Literacy Toolkit available. GPAI India Student Community.">
+  <!-- UPDATE: add toolkit cover image URL here -->
+  <meta name="twitter:image" content="https://example.com/toolkit-cover.jpg">
+  <!-- UPDATE: add canonical site URL here -->
+  <link rel="canonical" href="https://example.netlify.app/">
+  <title>Penta Minds | AI on the Ground — Voices from Indian Education</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120"><rect width="120" height="120" rx="22" fill="%23ffffff"/><text x="18" y="76" font-family="Arial,sans-serif" font-size="48" font-weight="800" fill="%230D2145">P</text><text x="58" y="76" font-family="Arial,sans-serif" font-size="48" font-weight="800" fill="%23E87722">M</text></svg>'>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Penta Minds",
+      "alternateName": "Team Penta Minds",
+      "description": "Student research team studying AI in Indian higher education across Tier 1, Tier 2, and Tier 3 institutions.",
+      "url": "https://example.netlify.app/",
+      "logo": "https://example.com/toolkit-cover.jpg",
+      "email": "vigneshprakash@zohomail.in",
+      "foundingDate": "2026",
+      "sameAs": [
+        "https://example.com/linkedin",
+        "https://example.com/gpai-community",
+        "https://example.com/zenodo"
+      ],
+      "memberOf": {
+        "@type": "Organization",
+        "name": "GPAI India Student Community"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "India"
+      },
+      "knowsAbout": [
+        "AI literacy",
+        "Higher education in India",
+        "Responsible AI",
+        "AI governance"
+      ]
+    }
+  </script>
+  <style>
+    :root {
+      --navy: #0D2145;
+      --navy-dark: #0A1A35;
+      --orange: #E87722;
+      --light: #F8F9FC;
+      --white: #FFFFFF;
+      --text: #444444;
+      --muted: #707887;
+      --line: rgba(13, 33, 69, 0.12);
+      --shadow: 0 18px 50px rgba(13, 33, 69, 0.12);
+      --radius: 8px;
+      --heading: "Playfair Display", Georgia, serif;
+      --body: "Inter", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 84px;
+    }
+
+    body {
+      background: var(--light);
+      color: var(--text);
+      font-family: var(--body);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    body.is-loading {
+      overflow: hidden;
+    }
+
+    body.is-loading .site-header,
+    body.is-loading main,
+    body.is-loading .site-footer {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .page-loader {
+      align-items: center;
+      background: var(--white);
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      inset: 0;
+      justify-content: center;
+      opacity: 1;
+      position: fixed;
+      transition: opacity 450ms ease, visibility 450ms ease;
+      visibility: visible;
+      z-index: 9999;
+    }
+
+    .page-loader.done {
+      opacity: 0;
+      pointer-events: none;
+      visibility: hidden;
+    }
+
+    .loader-logo {
+      font-size: clamp(2.2rem, 7vw, 4.6rem);
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .loader-progress {
+      background: rgba(13, 33, 69, 0.12);
+      border-radius: 999px;
+      height: 3px;
+      overflow: hidden;
+      width: min(280px, 64vw);
+    }
+
+    .loader-progress span {
+      animation: loaderFill 1.5s linear forwards;
+      background: var(--orange);
+      display: block;
+      height: 100%;
+      transform: scaleX(0);
+      transform-origin: left;
+      width: 100%;
+    }
+
+    @keyframes loaderFill {
+      to { transform: scaleX(1); }
+    }
+
+    img, svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+      font: inherit;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.94);
+      border-bottom: 1px solid rgba(13, 33, 69, 0.08);
+      box-shadow: 0 10px 30px rgba(13, 33, 69, 0.08);
+      backdrop-filter: blur(16px);
+      transition: background 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+    }
+
+    .site-header.scrolled {
+      background: var(--navy);
+      border-bottom-color: rgba(255, 255, 255, 0.08);
+      box-shadow: 0 12px 34px rgba(10, 26, 53, 0.28);
+    }
+
+    .site-header.scrolled .brand-penta,
+    .site-header.scrolled .nav-link {
+      color: var(--white);
+    }
+
+    .site-header.scrolled .brand-sub {
+      color: rgba(255, 255, 255, 0.68);
+    }
+
+    .site-header.scrolled .nav-link:hover,
+    .site-header.scrolled .nav-link.active {
+      background: rgba(232, 119, 34, 0.16);
+      color: var(--orange);
+    }
+
+    .site-header.scrolled .menu-toggle {
+      background: var(--orange);
+    }
+
+    .nav-wrap {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      min-height: 78px;
+      gap: 24px;
+    }
+
+    .brand {
+      align-items: flex-start;
+      display: inline-flex;
+      flex-direction: column;
+      justify-content: center;
+      line-height: 1.05;
+      min-width: max-content;
+    }
+
+    .brand-main {
+      font-size: 1.32rem;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .brand-penta {
+      color: var(--navy);
+    }
+
+    .brand-minds {
+      color: var(--orange);
+    }
+
+    .brand-sub {
+      color: #777f8d;
+      font-size: 0.72rem;
+      font-weight: 600;
+      margin-top: 4px;
+      text-transform: uppercase;
+    }
+
+    .nav-links {
+      align-items: center;
+      display: flex;
+      gap: 8px;
+      list-style: none;
+    }
+
+    .nav-link {
+      border-radius: 999px;
+      color: var(--navy);
+      display: inline-flex;
+      font-size: 0.92rem;
+      font-weight: 700;
+      padding: 8px 12px;
+      transition: background 200ms ease, color 200ms ease, transform 200ms ease;
+    }
+
+    .nav-link:hover,
+    .nav-link.active {
+      background: rgba(232, 119, 34, 0.12);
+      color: var(--orange);
+      transform: translateY(-1px);
+    }
+
+    .menu-toggle {
+      align-items: center;
+      background: var(--navy);
+      border-radius: 8px;
+      display: none;
+      height: 44px;
+      justify-content: center;
+      width: 44px;
+    }
+
+    .menu-toggle span {
+      background: var(--white);
+      border-radius: 99px;
+      display: block;
+      height: 2px;
+      position: relative;
+      width: 22px;
+    }
+
+    .menu-toggle span::before,
+    .menu-toggle span::after {
+      background: var(--white);
+      border-radius: 99px;
+      content: "";
+      height: 2px;
+      left: 0;
+      position: absolute;
+      transition: transform 200ms ease, top 200ms ease;
+      width: 22px;
+    }
+
+    .menu-toggle span::before {
+      top: -7px;
+    }
+
+    .menu-toggle span::after {
+      top: 7px;
+    }
+
+    .menu-toggle.open span {
+      background: transparent;
+    }
+
+    .menu-toggle.open span::before {
+      top: 0;
+      transform: rotate(45deg);
+    }
+
+    .menu-toggle.open span::after {
+      top: 0;
+      transform: rotate(-45deg);
+    }
+
+    .section {
+      padding: 96px 0;
+      position: relative;
+    }
+
+    .hero {
+      align-items: center;
+      color: var(--white);
+      display: flex;
+      isolation: isolate;
+      min-height: 100vh;
+      overflow: hidden;
+      padding: 120px 0 80px;
+      position: relative;
+    }
+
+    .hero::before {
+      background: linear-gradient(135deg, #0D2145 0%, #132A55 52%, #0A1A35 100%);
+      content: "";
+      inset: 0;
+      position: absolute;
+      z-index: -2;
+    }
+
+    .hero-network-canvas {
+      height: 100%;
+      inset: 0;
+      opacity: 0.78;
+      pointer-events: none;
+      position: absolute;
+      width: 100%;
+      z-index: -1;
+    }
+
+    .hero-content {
+      max-width: 900px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero h1,
+    .hero h2 {
+      font-family: var(--heading);
+      font-size: clamp(3.2rem, 8vw, 7.6rem);
+      font-weight: 800;
+      letter-spacing: 0;
+      line-height: 0.95;
+    }
+
+    .hero h2 {
+      color: var(--orange);
+      margin-top: 10px;
+    }
+
+    .hero p {
+      color: rgba(255, 255, 255, 0.86);
+      font-size: clamp(1.05rem, 2vw, 1.28rem);
+      font-weight: 600;
+      margin-top: 28px;
+      max-width: 680px;
+    }
+
+    .button-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .btn {
+      align-items: center;
+      border-radius: 8px;
+      display: inline-flex;
+      font-weight: 800;
+      justify-content: center;
+      min-height: 50px;
+      padding: 13px 22px;
+      transition: border-color 200ms ease, background 200ms ease, color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+    }
+
+    .btn:hover {
+      box-shadow: 0 14px 28px rgba(0, 0, 0, 0.16);
+      transform: translateY(-2px);
+    }
+
+    .btn-orange {
+      background: var(--orange);
+      color: var(--white);
+    }
+
+    .btn-orange:hover {
+      background: #cc6419;
+    }
+
+    .btn-white-outline {
+      border: 2px solid rgba(255, 255, 255, 0.86);
+      color: var(--white);
+    }
+
+    .btn-white-outline:hover {
+      background: var(--white);
+      color: var(--navy);
+    }
+
+    .btn-navy-outline {
+      border: 2px solid var(--navy);
+      color: var(--navy);
+    }
+
+    .btn-navy-outline:hover {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .orange-divider {
+      background: var(--orange);
+      height: 4px;
+      width: 100%;
+    }
+
+    .stats-bar {
+      background: var(--navy);
+      color: var(--white);
+      padding: 28px 0;
+    }
+
+    .stats-grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(3, 1fr);
+      text-align: center;
+    }
+
+    .stat strong {
+      color: var(--white);
+      display: block;
+      font-family: var(--heading);
+      font-size: clamp(1.5rem, 3vw, 2.15rem);
+      line-height: 1.1;
+    }
+
+    .stat span {
+      color: rgba(255, 255, 255, 0.74);
+      display: block;
+      font-size: 0.92rem;
+      font-weight: 700;
+      margin-top: 8px;
+      text-transform: uppercase;
+    }
+
+    .section-title {
+      color: var(--navy);
+      font-family: var(--heading);
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.05;
+    }
+
+    .section-title.white {
+      color: var(--white);
+    }
+
+    .orange-rule {
+      background: var(--orange);
+      border-radius: 999px;
+      display: block;
+      height: 4px;
+      margin-top: 18px;
+      width: 82px;
+    }
+
+    .about-project {
+      background: var(--white);
+    }
+
+    .split {
+      align-items: start;
+      display: grid;
+      gap: 56px;
+      grid-template-columns: 0.9fr 1.3fr;
+    }
+
+    .lead-copy {
+      color: #4a4f5b;
+      font-size: 1.05rem;
+    }
+
+    .affiliation {
+      background: var(--light);
+      text-align: center;
+    }
+
+    .accent-bar {
+      background: var(--orange);
+      border-radius: 999px;
+      height: 5px;
+      margin: 0 auto 20px;
+      width: 74px;
+    }
+
+    .cards-3 {
+      display: grid;
+      gap: 22px;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 42px;
+    }
+
+    .info-card,
+    .team-card,
+    .objective-card,
+    .scope-card,
+    .module-card,
+    .associate-card {
+      border-radius: var(--radius);
+      transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+    }
+
+    .info-card:hover,
+    .team-card:hover,
+    .objective-card:hover,
+    .scope-card:hover,
+    .module-card:hover,
+    .associate-card:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-5px);
+    }
+
+    .info-card {
+      align-items: center;
+      background: var(--white);
+      border: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      min-height: 172px;
+      padding: 30px 22px;
+    }
+
+    .icon {
+      align-items: center;
+      background: rgba(232, 119, 34, 0.12);
+      border-radius: 50%;
+      color: var(--orange);
+      display: inline-flex;
+      font-size: 1.6rem;
+      height: 56px;
+      justify-content: center;
+      width: 56px;
+    }
+
+    .info-card h3 {
+      color: var(--navy);
+      font-size: 1.05rem;
+      line-height: 1.35;
+    }
+
+    .team-section {
+      background: var(--white);
+      text-align: center;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-top: 18px;
+    }
+
+    .team-grid {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: repeat(6, 1fr);
+      margin-top: 46px;
+    }
+
+    .team-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      display: flex;
+      flex-direction: column;
+      grid-column: span 2;
+      min-height: 330px;
+      padding: 28px 22px;
+    }
+
+    .team-card:nth-child(4) {
+      grid-column: 2 / span 2;
+    }
+
+    .team-card:nth-child(5) {
+      grid-column: 4 / span 2;
+    }
+
+    .avatar {
+      align-items: center;
+      background: var(--navy);
+      border: 4px solid rgba(232, 119, 34, 0.18);
+      border-radius: 50%;
+      color: var(--white);
+      display: inline-flex;
+      font-size: 1.35rem;
+      font-weight: 800;
+      height: 82px;
+      justify-content: center;
+      margin: 0 auto 18px;
+      overflow: hidden;
+      position: relative;
+      width: 82px;
+    }
+
+    .avatar img {
+      height: 100%;
+      inset: 0;
+      object-fit: cover;
+      position: absolute;
+      width: 100%;
+    }
+
+    .avatar-upload {
+      align-items: center;
+      background: rgba(13, 33, 69, 0.62);
+      border-radius: 50%;
+      color: var(--white);
+      display: flex;
+      font-size: 1.15rem;
+      inset: 0;
+      justify-content: center;
+      opacity: 0;
+      position: absolute;
+      transition: opacity 180ms ease;
+      z-index: 2;
+    }
+
+    .avatar-upload::before {
+      border: 2px solid currentColor;
+      border-radius: 4px;
+      content: "";
+      height: 14px;
+      position: absolute;
+      width: 20px;
+    }
+
+    .avatar-upload::after {
+      border: 2px solid currentColor;
+      border-radius: 50%;
+      box-shadow: -7px -9px 0 -5px currentColor;
+      content: "";
+      height: 7px;
+      position: absolute;
+      width: 7px;
+    }
+
+    .avatar:hover .avatar-upload,
+    .avatar-upload:focus-visible {
+      opacity: 1;
+    }
+
+    .avatar-input {
+      display: none;
+    }
+
+    .team-card h3,
+    .associate-card h3 {
+      color: var(--navy);
+      font-size: 1.12rem;
+      line-height: 1.35;
+    }
+
+    .institution {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin: 8px auto 10px;
+      max-width: 260px;
+    }
+
+    .location {
+      align-items: center;
+      color: #5c6470;
+      display: inline-flex;
+      font-size: 0.92rem;
+      font-weight: 700;
+      gap: 6px;
+      justify-content: center;
+    }
+
+    .location::before {
+      background: var(--orange);
+      border-radius: 50% 50% 50% 0;
+      content: "";
+      display: inline-block;
+      height: 10px;
+      transform: rotate(-45deg);
+      width: 10px;
+    }
+
+    .badge {
+      border: 1px solid var(--orange);
+      border-radius: 999px;
+      color: var(--orange);
+      display: inline-flex;
+      font-size: 0.78rem;
+      font-weight: 800;
+      justify-content: center;
+      margin: 16px auto 14px;
+      padding: 6px 12px;
+      width: max-content;
+    }
+
+    .linkedin {
+      align-items: center;
+      border: 1px solid rgba(13, 33, 69, 0.16);
+      border-radius: 8px;
+      color: var(--navy);
+      display: inline-flex;
+      font-weight: 900;
+      height: 38px;
+      justify-content: center;
+      margin: auto auto 0;
+      transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+      width: 38px;
+    }
+
+    .linkedin:hover {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: var(--white);
+    }
+
+    .avatar-reset {
+      background: transparent;
+      color: var(--muted);
+      display: inline-flex;
+      font-size: 0.78rem;
+      font-weight: 700;
+      justify-content: center;
+      margin: 10px auto 0;
+      padding: 4px 8px;
+      transition: color 180ms ease;
+      width: max-content;
+    }
+
+    .avatar-reset:hover {
+      color: var(--orange);
+    }
+
+    .avatar-reset:disabled {
+      cursor: default;
+      opacity: 0.42;
+    }
+
+    .associate-card {
+      background: #fbfcff;
+      border: 1px dashed rgba(13, 33, 69, 0.22);
+      margin: 30px auto 0;
+      max-width: 560px;
+      padding: 28px;
+    }
+
+    .associate-role {
+      color: var(--orange);
+      font-style: italic;
+      font-weight: 700;
+      margin-top: 10px;
+    }
+
+    .research-section {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .objectives-grid {
+      display: grid;
+      gap: 24px;
+      grid-template-columns: repeat(2, 1fr);
+      margin-top: 42px;
+    }
+
+    .objective-card {
+      background: var(--white);
+      color: var(--text);
+      min-height: 178px;
+      padding: 30px;
+    }
+
+    .objective-card h3 {
+      color: var(--navy);
+      font-size: 1.35rem;
+      margin-bottom: 10px;
+    }
+
+    .research-subhead {
+      color: var(--white);
+      font-family: var(--heading);
+      font-size: clamp(1.8rem, 3vw, 2.55rem);
+      margin-top: 64px;
+    }
+
+    .focus-list {
+      display: grid;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .focus-bar {
+      align-items: center;
+      border-radius: 8px;
+      display: flex;
+      font-weight: 800;
+      justify-content: space-between;
+      min-height: 62px;
+      padding: 18px 22px;
+    }
+
+    .focus-bar:nth-child(odd) {
+      background: rgba(255, 255, 255, 0.11);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .focus-bar:nth-child(even) {
+      background: var(--orange);
+    }
+
+    .scope-grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: 24px;
+    }
+
+    .scope-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      padding: 24px;
+    }
+
+    .scope-card h3 {
+      color: var(--white);
+      font-size: 1rem;
+      margin-bottom: 10px;
+    }
+
+    .scope-card p {
+      color: rgba(255, 255, 255, 0.74);
+    }
+
+    .timeline-section {
+      background: var(--white);
+    }
+
+    .timeline-heading {
+      text-align: center;
+    }
+
+    .timeline-heading .orange-rule {
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 34px;
+      margin: 54px auto 0;
+      max-width: 980px;
+      position: relative;
+    }
+
+    .timeline::before {
+      background: rgba(232, 119, 34, 0.26);
+      border-radius: 999px;
+      content: "";
+      height: 100%;
+      left: 50%;
+      position: absolute;
+      top: 0;
+      transform: translateX(-50%);
+      width: 3px;
+    }
+
+    .timeline-entry {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 132px;
+      position: relative;
+    }
+
+    .timeline-entry::before {
+      background: var(--orange);
+      border: 5px solid var(--white);
+      border-radius: 50%;
+      box-shadow: 0 0 0 1px rgba(232, 119, 34, 0.22);
+      content: "";
+      height: 18px;
+      left: 50%;
+      position: absolute;
+      top: 24px;
+      transform: translateX(-50%);
+      width: 18px;
+      z-index: 2;
+    }
+
+    .timeline-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: 0 12px 34px rgba(13, 33, 69, 0.07);
+      padding: 24px;
+      transition: transform 220ms ease, box-shadow 220ms ease;
+    }
+
+    .timeline-card:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-4px);
+    }
+
+    .timeline-entry:nth-child(odd) .timeline-card {
+      grid-column: 1;
+      margin-right: 48px;
+      text-align: right;
+    }
+
+    .timeline-entry:nth-child(even) .timeline-card {
+      grid-column: 2;
+      margin-left: 48px;
+    }
+
+    .timeline-date {
+      color: var(--navy);
+      display: block;
+      font-weight: 900;
+      margin-bottom: 6px;
+    }
+
+    .timeline-card h3 {
+      color: var(--navy);
+      font-size: 1.18rem;
+      line-height: 1.35;
+      margin-bottom: 10px;
+    }
+
+    .timeline-card p {
+      color: var(--muted);
+      font-size: 0.96rem;
+      line-height: 1.65;
+    }
+
+    .toolkit-section {
+      background: var(--white);
+    }
+
+    .toolkit-grid {
+      align-items: center;
+      display: grid;
+      gap: 56px;
+      grid-template-columns: 0.9fr 1.1fr;
+    }
+
+    .eyebrow {
+      color: var(--orange);
+      font-weight: 800;
+      margin-top: 16px;
+      text-transform: uppercase;
+    }
+
+    .license {
+      background: rgba(13, 33, 69, 0.08);
+      border: 1px solid rgba(13, 33, 69, 0.12);
+      border-radius: 999px;
+      color: var(--navy);
+      display: inline-flex;
+      font-size: 0.78rem;
+      font-weight: 800;
+      margin-top: 22px;
+      padding: 7px 12px;
+    }
+
+    .module-grid {
+      display: grid;
+      gap: 18px;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .module-card {
+      background: var(--light);
+      border: 1px solid var(--line);
+      padding: 22px;
+    }
+
+    .module-number {
+      align-items: center;
+      background: var(--orange);
+      border-radius: 50%;
+      color: var(--white);
+      display: inline-flex;
+      font-weight: 900;
+      height: 38px;
+      justify-content: center;
+      margin-bottom: 14px;
+      width: 38px;
+    }
+
+    .module-card h3 {
+      color: var(--navy);
+      font-size: 1rem;
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+
+    .module-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.55;
+    }
+
+    .survey-section {
+      background: var(--light);
+      text-align: center;
+    }
+
+    .survey-inner {
+      margin: 0 auto;
+      max-width: 820px;
+    }
+
+    .live-counter {
+      align-items: center;
+      background: var(--orange);
+      border-radius: 999px;
+      box-shadow: 0 16px 34px rgba(232, 119, 34, 0.22);
+      color: var(--white);
+      display: inline-flex;
+      font-size: clamp(1rem, 3vw, 1.18rem);
+      font-weight: 900;
+      justify-content: center;
+      margin-top: 28px;
+      min-height: 48px;
+      padding: 11px 22px;
+    }
+
+    .live-counter-number {
+      display: inline-block;
+      min-width: 2ch;
+      transform-origin: center;
+    }
+
+    .live-counter-number.pulse {
+      animation: counterPulse 520ms ease;
+    }
+
+    @keyframes counterPulse {
+      0% { transform: scale(1); }
+      45% { transform: scale(1.16); }
+      100% { transform: scale(1); }
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 26px;
+    }
+
+    .pill {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--navy);
+      font-size: 0.9rem;
+      font-weight: 800;
+      padding: 9px 14px;
+    }
+
+    .note {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-top: 22px;
+    }
+
+    .contact-section {
+      background: var(--navy);
+      color: var(--white);
+      text-align: center;
+    }
+
+    .email-link {
+      color: var(--white);
+      display: inline-flex;
+      font-size: clamp(1.05rem, 3vw, 1.45rem);
+      font-weight: 800;
+      margin-top: 24px;
+      transition: color 200ms ease;
+      word-break: break-word;
+    }
+
+    .email-link:hover {
+      color: var(--orange);
+    }
+
+    .social-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .social-btn {
+      align-items: center;
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      border-radius: 8px;
+      color: var(--white);
+      display: inline-flex;
+      font-weight: 800;
+      gap: 8px;
+      min-height: 46px;
+      padding: 10px 16px;
+      transition: background 200ms ease, border-color 200ms ease, transform 200ms ease;
+    }
+
+    .social-btn:hover {
+      background: var(--orange);
+      border-color: var(--orange);
+      transform: translateY(-2px);
+    }
+
+    .affiliation-line {
+      color: rgba(255, 255, 255, 0.62);
+      font-weight: 600;
+      margin-top: 32px;
+    }
+
+    .site-footer {
+      background: var(--navy-dark);
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .footer-grid {
+      align-items: center;
+      display: grid;
+      gap: 26px;
+      grid-template-columns: 1fr 1.2fr 1fr;
+      padding: 34px 0;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 18px;
+      justify-content: center;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.74);
+      font-size: 0.9rem;
+      font-weight: 700;
+      transition: color 200ms ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--orange);
+    }
+
+    .copyright {
+      font-size: 0.9rem;
+      text-align: right;
+    }
+
+    .footer-line {
+      background: var(--orange);
+      height: 3px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 920px) {
+      .menu-toggle {
+        display: inline-flex;
+      }
+
+      .nav-links {
+        background: var(--white);
+        border-bottom: 1px solid var(--line);
+        box-shadow: 0 20px 30px rgba(13, 33, 69, 0.08);
+        display: grid;
+        gap: 4px;
+        left: 0;
+        opacity: 0;
+        padding: 12px 20px 20px;
+        pointer-events: none;
+        position: absolute;
+        right: 0;
+        top: 78px;
+        transform: translateY(-8px);
+        transition: opacity 180ms ease, transform 180ms ease;
+      }
+
+      .site-header.scrolled .nav-links {
+        background: var(--navy);
+        border-bottom-color: rgba(255, 255, 255, 0.08);
+      }
+
+      .nav-links.open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      .nav-link {
+        border-radius: 8px;
+        justify-content: center;
+        padding: 12px;
+      }
+
+      .split,
+      .toolkit-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cards-3,
+      .scope-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .team-card,
+      .team-card:nth-child(4),
+      .team-card:nth-child(5) {
+        grid-column: span 3;
+      }
+
+      .copyright,
+      .footer-grid {
+        text-align: center;
+      }
+
+      .timeline {
+        gap: 26px;
+      }
+
+      .timeline::before {
+        left: 13px;
+        transform: none;
+      }
+
+      .timeline-entry {
+        display: block;
+        min-height: 0;
+        padding-left: 42px;
+      }
+
+      .timeline-entry::before {
+        left: 13px;
+        top: 22px;
+      }
+
+      .timeline-entry:nth-child(odd) .timeline-card,
+      .timeline-entry:nth-child(even) .timeline-card {
+        margin: 0;
+        text-align: left;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .container {
+        width: min(100% - 28px, 1120px);
+      }
+
+      .section {
+        padding: 74px 0;
+      }
+
+      .hero {
+        min-height: 100vh;
+        padding-top: 110px;
+      }
+
+      .button-row,
+      .survey-section .button-row {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .stats-grid,
+      .objectives-grid,
+      .module-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .team-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .team-card,
+      .team-card:nth-child(4),
+      .team-card:nth-child(5) {
+        grid-column: auto;
+      }
+
+      .footer-links {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body class="is-loading">
+  <div class="page-loader" aria-label="Loading Penta Minds website" role="status">
+    <div class="loader-logo" aria-hidden="true"><span class="brand-penta">Penta</span> <span class="brand-minds">Minds</span></div>
+    <div class="loader-progress" aria-hidden="true"><span></span></div>
+  </div>
+
+  <header class="site-header">
+    <nav class="container nav-wrap" aria-label="Primary navigation">
+      <a class="brand" href="#home" aria-label="Penta Minds home">
+        <span class="brand-main"><span class="brand-penta">Penta</span> <span class="brand-minds">Minds</span></span>
+        <span class="brand-sub">Student Research Team</span>
+      </a>
+      <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+      </button>
+      <ul class="nav-links">
+        <li><a class="nav-link active" href="#home">Home</a></li>
+        <li><a class="nav-link" href="#about">About</a></li>
+        <li><a class="nav-link" href="#team">Team</a></li>
+        <li><a class="nav-link" href="#research">Research</a></li>
+        <li><a class="nav-link" href="#timeline">Timeline</a></li>
+        <li><a class="nav-link" href="#toolkit">Toolkit</a></li>
+        <li><a class="nav-link" href="#survey">Survey</a></li>
+        <li><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <canvas class="hero-network-canvas" aria-hidden="true"></canvas>
+      <div class="container hero-content reveal">
+        <h1>AI on the Ground:</h1>
+        <h2>Voices from Indian Education</h2>
+        <p>A Student Research Initiative | GPAI India Student Community</p>
+        <div class="button-row">
+          <!-- UPDATE: add link here -->
+          <a class="btn btn-orange" href="#survey">Take the Survey</a>
+          <!-- UPDATE: add link here -->
+          <a class="btn btn-white-outline" href="#toolkit">Download Toolkit</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="orange-divider" aria-hidden="true"></div>
+    <section class="stats-bar" aria-label="Project statistics">
+      <div class="container stats-grid">
+        <div class="stat reveal">
+          <strong>9+ Institutions</strong>
+          <span>Tamil Nadu</span>
+        </div>
+        <div class="stat reveal">
+          <strong>5 Researchers</strong>
+          <span>2 Cities</span>
+        </div>
+        <div class="stat reveal">
+          <strong>March–June 2026</strong>
+          <span>Active Study</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section about-project" id="about">
+      <div class="container split">
+        <div class="reveal">
+          <h2 class="section-title">About the Project</h2>
+          <span class="orange-rule" aria-hidden="true"></span>
+        </div>
+        <p class="lead-copy reveal">AI on the Ground: Voices from Indian Education is a student-led research initiative exploring how Artificial Intelligence is understood, experienced, and used across Tier 1, Tier 2, and Tier 3 higher education institutions in India. Through field surveys, institutional observations, and faculty interviews across Tamil Nadu and NCR, we are building the first systematic, student-centred evidence base on AI in Indian higher education. Our findings will inform a Policy Brief, AI Literacy Toolkit, and Responsible Use Guidelines — submitted to the OECD and national authorities through the Global Partnership on AI (GPAI).</p>
+      </div>
+    </section>
+
+    <section class="section affiliation">
+      <div class="container">
+        <div class="accent-bar reveal" aria-hidden="true"></div>
+        <h2 class="section-title reveal">Our Affiliation</h2>
+        <div class="cards-3">
+          <article class="info-card reveal">
+            <span class="icon" aria-hidden="true">◆</span>
+            <h3>GPAI India Student Community</h3>
+          </article>
+          <article class="info-card reveal">
+            <span class="icon" aria-hidden="true">◈</span>
+            <h3>Inria, France — Organising Body</h3>
+          </article>
+          <article class="info-card reveal">
+            <span class="icon" aria-hidden="true">◇</span>
+            <h3>OECD — Output Audience</h3>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section team-section" id="team">
+      <div class="container">
+        <h2 class="section-title reveal">Meet the Team</h2>
+        <span class="orange-rule reveal" style="margin-left:auto;margin-right:auto;" aria-hidden="true"></span>
+        <p class="subtitle reveal">Five minds. Two cities. One mission.</p>
+        <div class="team-grid">
+          <article class="team-card reveal" data-member-id="vignesh-prakash">
+            <span class="avatar" data-initials="VP">
+              <span class="avatar-initials">VP</span>
+              <button class="avatar-upload" type="button" aria-label="Upload photo for Vignesh Prakash"></button>
+              <input class="avatar-input" type="file" accept="image/*">
+            </span>
+            <h3>Vignesh Prakash</h3>
+            <p class="institution">Parisutham Institute of Technology and Science</p>
+            <span class="location">Thanjavur</span>
+            <span class="badge">Team Lead</span>
+            <!-- UPDATE: add link here -->
+            <a class="linkedin" href="#" aria-label="Vignesh Prakash LinkedIn">in</a>
+            <button class="avatar-reset" type="button" disabled>Reset photo</button>
+          </article>
+          <article class="team-card reveal" data-member-id="muskan-joshi">
+            <span class="avatar" data-initials="MJ">
+              <span class="avatar-initials">MJ</span>
+              <button class="avatar-upload" type="button" aria-label="Upload photo for Muskan Joshi"></button>
+              <input class="avatar-input" type="file" accept="image/*">
+            </span>
+            <h3>Muskan Joshi</h3>
+            <p class="institution">Guru Gobind Singh Indraprastha University</p>
+            <span class="location">Delhi</span>
+            <span class="badge">Team Member</span>
+            <!-- UPDATE: add link here -->
+            <a class="linkedin" href="#" aria-label="Muskan Joshi LinkedIn">in</a>
+            <button class="avatar-reset" type="button" disabled>Reset photo</button>
+          </article>
+          <article class="team-card reveal" data-member-id="priya-saxena">
+            <span class="avatar" data-initials="PS">
+              <span class="avatar-initials">PS</span>
+              <button class="avatar-upload" type="button" aria-label="Upload photo for Priya Saxena"></button>
+              <input class="avatar-input" type="file" accept="image/*">
+            </span>
+            <h3>Priya Saxena</h3>
+            <p class="institution">Guru Gobind Singh Indraprastha University</p>
+            <span class="location">Delhi</span>
+            <span class="badge">Team Member</span>
+            <!-- UPDATE: add link here -->
+            <a class="linkedin" href="#" aria-label="Priya Saxena LinkedIn">in</a>
+            <button class="avatar-reset" type="button" disabled>Reset photo</button>
+          </article>
+          <article class="team-card reveal" data-member-id="shivani-singh">
+            <span class="avatar" data-initials="SS">
+              <span class="avatar-initials">SS</span>
+              <button class="avatar-upload" type="button" aria-label="Upload photo for Shivani Singh"></button>
+              <input class="avatar-input" type="file" accept="image/*">
+            </span>
+            <h3>Shivani Singh</h3>
+            <p class="institution">Guru Gobind Singh Indraprastha University</p>
+            <span class="location">Delhi</span>
+            <span class="badge">Team Member</span>
+            <!-- UPDATE: add link here -->
+            <a class="linkedin" href="#" aria-label="Shivani Singh LinkedIn">in</a>
+            <button class="avatar-reset" type="button" disabled>Reset photo</button>
+          </article>
+          <article class="team-card reveal" data-member-id="aditi-pathak">
+            <span class="avatar" data-initials="AP">
+              <span class="avatar-initials">AP</span>
+              <button class="avatar-upload" type="button" aria-label="Upload photo for Aditi Pathak"></button>
+              <input class="avatar-input" type="file" accept="image/*">
+            </span>
+            <h3>Aditi Pathak</h3>
+            <p class="institution">Gargi College</p>
+            <span class="location">Delhi</span>
+            <span class="badge">Team Member</span>
+            <!-- UPDATE: add link here -->
+            <a class="linkedin" href="#" aria-label="Aditi Pathak LinkedIn">in</a>
+            <button class="avatar-reset" type="button" disabled>Reset photo</button>
+          </article>
+        </div>
+        <article class="associate-card reveal">
+          <h3>Praveen K K</h3>
+          <p class="institution">Parisutham Institute of Technology and Science</p>
+          <span class="location">Thanjavur</span>
+          <p class="associate-role">Field Associate</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section research-section" id="research">
+      <div class="container">
+        <h2 class="section-title white reveal">Our Research</h2>
+        <span class="orange-rule reveal" aria-hidden="true"></span>
+        <div class="objectives-grid">
+          <article class="objective-card reveal">
+            <h3>Assess AI Awareness</h3>
+            <p>Among students and faculty across institution tiers.</p>
+          </article>
+          <article class="objective-card reveal">
+            <h3>Document Ground Reality</h3>
+            <p>Of AI use in Indian higher education.</p>
+          </article>
+          <article class="objective-card reveal">
+            <h3>Identify Challenges</h3>
+            <p>In integrating AI into educational practice.</p>
+          </article>
+          <article class="objective-card reveal">
+            <h3>Recommend Policy Directions</h3>
+            <p>For responsible AI integration.</p>
+          </article>
+        </div>
+
+        <h3 class="research-subhead reveal">Focus Areas</h3>
+        <div class="focus-list">
+          <div class="focus-bar reveal"><span>Tier 1/2/3 Institution Observation</span></div>
+          <div class="focus-bar reveal"><span>AI Infrastructure Availability</span></div>
+          <div class="focus-bar reveal"><span>Real-world AI Use Case Awareness</span></div>
+          <div class="focus-bar reveal"><span>Formal Training Exposure</span></div>
+        </div>
+
+        <h3 class="research-subhead reveal">Geographic Scope</h3>
+        <div class="scope-grid">
+          <article class="scope-card reveal">
+            <h3>Offline Field Visits</h3>
+            <p>Thanjavur (Primary) · Trichy (Secondary)</p>
+          </article>
+          <article class="scope-card reveal">
+            <h3>Online Survey</h3>
+            <p>Chennai · Coimbatore</p>
+          </article>
+          <article class="scope-card reveal">
+            <h3>Online + Offline</h3>
+            <p>NCR — Delhi</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section timeline-section" id="timeline">
+      <div class="container">
+        <div class="timeline-heading reveal">
+          <h2 class="section-title">Project Timeline</h2>
+          <span class="orange-rule" aria-hidden="true"></span>
+        </div>
+        <div class="timeline">
+          <article class="timeline-entry reveal">
+            <div class="timeline-card">
+              <span class="timeline-date">March 2026</span>
+              <h3>Registration & Team Formation</h3>
+              <p>Team Penta Minds officially registered for the challenge. Research schema developed and team meetings initiated.</p>
+            </div>
+          </article>
+          <article class="timeline-entry reveal">
+            <div class="timeline-card">
+              <span class="timeline-date">April 2026</span>
+              <h3>Survey Launch & Outreach</h3>
+              <p>Online survey launched. Institution outreach begun across Tamil Nadu. Phase 1 contribution submitted.</p>
+            </div>
+          </article>
+          <article class="timeline-entry reveal">
+            <div class="timeline-card">
+              <span class="timeline-date">April–May 2026</span>
+              <h3>Field Data Collection</h3>
+              <p>Field visits across 9+ institutions in Thanjavur and Trichy. Interviews with students and faculty.</p>
+            </div>
+          </article>
+          <article class="timeline-entry reveal">
+            <div class="timeline-card">
+              <span class="timeline-date">May 2026</span>
+              <h3>Data Compilation</h3>
+              <p>All field and online data consolidated and organised for analysis.</p>
+            </div>
+          </article>
+          <article class="timeline-entry reveal">
+            <div class="timeline-card">
+              <span class="timeline-date">June 2026</span>
+              <h3>Analysis & Final Report</h3>
+              <p>Findings analysed, policy brief and AI Literacy Toolkit finalised and published.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section toolkit-section" id="toolkit">
+      <div class="container toolkit-grid">
+        <div class="reveal">
+          <h2 class="section-title">The Ground-Up AI Literacy Toolkit</h2>
+          <p class="eyebrow">Free · Open Access · For All Institution Types</p>
+          <p class="lead-copy" style="margin-top:18px;">Designed to convert informal AI competence into critically grounded, equity-aware, and responsible academic practice. Six structured modules for students and faculty across Tier 1, 2, and 3 institutions.</p>
+          <span class="license">CC BY-NC-SA 4.0</span>
+          <div class="button-row">
+            <!-- UPDATE: add link here -->
+            <a class="btn btn-orange" href="#">Download PDF</a>
+            <!-- UPDATE: add link here -->
+            <a class="btn btn-navy-outline" href="#">View on Zenodo</a>
+          </div>
+        </div>
+        <div class="module-grid">
+          <article class="module-card reveal">
+            <span class="module-number">1</span>
+            <h3>What Is AI Actually Doing?</h3>
+            <p>Clear foundations for understanding AI systems.</p>
+          </article>
+          <article class="module-card reveal">
+            <span class="module-number">2</span>
+            <h3>Your AI Learning Audit</h3>
+            <p>Map how AI already appears in study habits.</p>
+          </article>
+          <article class="module-card reveal">
+            <span class="module-number">3</span>
+            <h3>Reading AI Outputs Critically</h3>
+            <p>Evaluate confidence, bias, and accuracy.</p>
+          </article>
+          <article class="module-card reveal">
+            <span class="module-number">4</span>
+            <h3>AI, Equity, and the Learning Gap</h3>
+            <p>Understand access, language, and inclusion.</p>
+          </article>
+          <article class="module-card reveal">
+            <span class="module-number">5</span>
+            <h3>Responsible and Ethical AI Use</h3>
+            <p>Build habits for transparent academic practice.</p>
+          </article>
+          <article class="module-card reveal">
+            <span class="module-number">6</span>
+            <h3>Co-Creating Your Institution's AI Guidelines</h3>
+            <p>Turn local evidence into shared norms.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section survey-section" id="survey">
+      <div class="container survey-inner">
+        <h2 class="section-title reveal">Share Your Voice</h2>
+        <p class="subtitle reveal">Your perspective on AI in education matters — and it reaches the OECD.</p>
+        <div class="live-counter reveal" aria-live="polite">
+          <span class="live-counter-number">0</span>&nbsp;voices collected so far
+        </div>
+        <div class="button-row" style="justify-content:center;">
+          <!-- UPDATE: add link here -->
+          <a class="btn btn-orange" href="#">Take Online Survey</a>
+          <!-- UPDATE: add link here -->
+          <a class="btn btn-navy-outline" href="#">Download QR Code</a>
+        </div>
+        <div class="pill-row reveal">
+          <span class="pill">10 mins for students</span>
+          <span class="pill">15 mins for faculty</span>
+          <span class="pill">100% anonymous</span>
+        </div>
+        <p class="note reveal">Responses are collected anonymously and used exclusively for academic research.</p>
+      </div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <h2 class="section-title white reveal">Get in Touch</h2>
+        <a class="email-link reveal" href="mailto:vigneshprakash@zohomail.in">vigneshprakash@zohomail.in</a>
+        <div class="social-row reveal">
+          <!-- UPDATE: add link here -->
+          <a class="social-btn" href="#">LinkedIn</a>
+          <!-- UPDATE: add link here -->
+          <a class="social-btn" href="#">GPAI Community</a>
+          <!-- UPDATE: add link here -->
+          <a class="social-btn" href="#">Zenodo</a>
+        </div>
+        <p class="affiliation-line reveal">Team Penta Minds | GPAI India Student Community | AI Grand Challenge 2026</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <a class="brand" href="#home" aria-label="Penta Minds home">
+        <span class="brand-main"><span class="brand-penta" style="color:#fff;">Penta</span> <span class="brand-minds">Minds</span></span>
+        <span class="brand-sub">Student Research Team</span>
+      </a>
+      <ul class="footer-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#timeline">Timeline</a></li>
+        <li><a href="#toolkit">Toolkit</a></li>
+        <li><a href="#survey">Survey</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <p class="copyright">© 2026 Team Penta Minds. Licensed under CC BY-NC-SA 4.0</p>
+    </div>
+    <div class="footer-line" aria-hidden="true"></div>
+  </footer>
+
+  <script>
+    const pageLoader = document.querySelector(".page-loader");
+    const menuToggle = document.querySelector(".menu-toggle");
+    const siteHeader = document.querySelector(".site-header");
+    const navLinks = document.querySelector(".nav-links");
+    const links = document.querySelectorAll(".nav-link");
+    const sections = document.querySelectorAll("main section[id]");
+    const revealItems = document.querySelectorAll(".reveal");
+    const teamCards = document.querySelectorAll(".team-card[data-member-id]");
+    const liveCounterNumber = document.querySelector(".live-counter-number");
+    const heroCanvas = document.querySelector(".hero-network-canvas");
+    const heroContext = heroCanvas.getContext("2d");
+    const networkDots = [];
+    let canvasWidth = 0;
+    let canvasHeight = 0;
+    let animationFrameId;
+
+    const updateHeaderState = () => {
+      siteHeader.classList.toggle("scrolled", window.scrollY > 50);
+    };
+
+    updateHeaderState();
+    window.addEventListener("scroll", updateHeaderState, { passive: true });
+
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuToggle.classList.toggle("open", isOpen);
+      menuToggle.setAttribute("aria-expanded", String(isOpen));
+      menuToggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+    });
+
+    links.forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.setAttribute("aria-label", "Open navigation menu");
+      });
+    });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.16 });
+
+    revealItems.forEach((item) => revealObserver.observe(item));
+
+    const activeObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute("id");
+          links.forEach((link) => {
+            link.classList.toggle("active", link.getAttribute("href") === `#${id}`);
+          });
+        }
+      });
+    }, { rootMargin: "-38% 0px -52% 0px", threshold: 0 });
+
+    sections.forEach((section) => activeObserver.observe(section));
+
+    const avatarStorageKey = (memberId) => `penta-minds-avatar-${memberId}`;
+
+    const setAvatarPhoto = (card, imageData) => {
+      const avatar = card.querySelector(".avatar");
+      const resetButton = card.querySelector(".avatar-reset");
+      let image = avatar.querySelector("img");
+
+      if (!image) {
+        image = document.createElement("img");
+        image.alt = `${card.querySelector("h3").textContent} photo`;
+        avatar.prepend(image);
+      }
+
+      image.src = imageData;
+      resetButton.disabled = false;
+    };
+
+    const clearAvatarPhoto = (card) => {
+      const image = card.querySelector(".avatar img");
+      const resetButton = card.querySelector(".avatar-reset");
+
+      if (image) image.remove();
+      resetButton.disabled = true;
+    };
+
+    const storeAvatarPhoto = (memberId, imageData) => {
+      try {
+        localStorage.setItem(avatarStorageKey(memberId), imageData);
+      } catch (error) {
+        console.warn("Could not save team photo to localStorage.", error);
+      }
+    };
+
+    const removeStoredAvatarPhoto = (memberId) => {
+      try {
+        localStorage.removeItem(avatarStorageKey(memberId));
+      } catch (error) {
+        console.warn("Could not remove team photo from localStorage.", error);
+      }
+    };
+
+    const loadStoredAvatarPhoto = (memberId) => {
+      try {
+        return localStorage.getItem(avatarStorageKey(memberId));
+      } catch (error) {
+        console.warn("Could not load team photo from localStorage.", error);
+        return null;
+      }
+    };
+
+    const resizePhoto = (file, callback) => {
+      const reader = new FileReader();
+
+      reader.addEventListener("load", () => {
+        const image = new Image();
+
+        image.addEventListener("load", () => {
+          const size = 320;
+          const canvas = document.createElement("canvas");
+          const context = canvas.getContext("2d");
+          const shortestSide = Math.min(image.width, image.height);
+          const sourceX = (image.width - shortestSide) / 2;
+          const sourceY = (image.height - shortestSide) / 2;
+
+          canvas.width = size;
+          canvas.height = size;
+          context.drawImage(image, sourceX, sourceY, shortestSide, shortestSide, 0, 0, size, size);
+          callback(canvas.toDataURL("image/jpeg", 0.82));
+        });
+
+        image.src = reader.result;
+      });
+
+      reader.readAsDataURL(file);
+    };
+
+    teamCards.forEach((card) => {
+      const memberId = card.dataset.memberId;
+      const uploadButton = card.querySelector(".avatar-upload");
+      const input = card.querySelector(".avatar-input");
+      const resetButton = card.querySelector(".avatar-reset");
+      const storedPhoto = loadStoredAvatarPhoto(memberId);
+
+      if (storedPhoto) setAvatarPhoto(card, storedPhoto);
+
+      uploadButton.addEventListener("click", () => {
+        input.click();
+      });
+
+      input.addEventListener("change", () => {
+        const [file] = input.files;
+
+        if (!file || !file.type.startsWith("image/")) return;
+
+        resizePhoto(file, (imageData) => {
+          setAvatarPhoto(card, imageData);
+          storeAvatarPhoto(memberId, imageData);
+          input.value = "";
+        });
+      });
+
+      resetButton.addEventListener("click", () => {
+        clearAvatarPhoto(card);
+        removeStoredAvatarPhoto(memberId);
+        input.value = "";
+      });
+    });
+
+    // UPDATE: set this to the real current survey response count.
+    let surveyResponseCount = 27;
+
+    const updateSurveyCounter = () => {
+      liveCounterNumber.textContent = surveyResponseCount;
+    };
+
+    const pulseSurveyCounter = () => {
+      liveCounterNumber.classList.remove("pulse");
+      void liveCounterNumber.offsetWidth;
+      liveCounterNumber.classList.add("pulse");
+    };
+
+    const scheduleSurveyCounterIncrement = () => {
+      const delay = 8000 + Math.random() * 4000;
+
+      window.setTimeout(() => {
+        surveyResponseCount += Math.floor(Math.random() * 3) + 1;
+        updateSurveyCounter();
+        pulseSurveyCounter();
+        scheduleSurveyCounterIncrement();
+      }, delay);
+    };
+
+    updateSurveyCounter();
+    scheduleSurveyCounterIncrement();
+
+    const getDotCount = () => {
+      const area = canvasWidth * canvasHeight;
+      const densityCount = Math.round(area / 18000);
+      return Math.max(28, Math.min(densityCount, window.innerWidth < 700 ? 52 : 82));
+    };
+
+    const createDot = () => {
+      const speed = window.innerWidth < 700 ? 0.12 : 0.16;
+      const angle = Math.random() * Math.PI * 2;
+
+      return {
+        x: Math.random() * canvasWidth,
+        y: Math.random() * canvasHeight,
+        vx: Math.cos(angle) * (0.05 + Math.random() * speed),
+        vy: Math.sin(angle) * (0.05 + Math.random() * speed),
+        radius: 1.2 + Math.random() * 1.3
+      };
+    };
+
+    const resizeHeroCanvas = () => {
+      const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+      const rect = heroCanvas.parentElement.getBoundingClientRect();
+
+      canvasWidth = Math.round(rect.width);
+      canvasHeight = Math.round(rect.height);
+      heroCanvas.width = Math.round(canvasWidth * pixelRatio);
+      heroCanvas.height = Math.round(canvasHeight * pixelRatio);
+      heroContext.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+
+      const targetCount = getDotCount();
+      while (networkDots.length < targetCount) networkDots.push(createDot());
+      while (networkDots.length > targetCount) networkDots.pop();
+    };
+
+    const drawHeroNetwork = () => {
+      heroContext.clearRect(0, 0, canvasWidth, canvasHeight);
+
+      networkDots.forEach((dot) => {
+        dot.x += dot.vx;
+        dot.y += dot.vy;
+
+        if (dot.x <= 0 || dot.x >= canvasWidth) dot.vx *= -1;
+        if (dot.y <= 0 || dot.y >= canvasHeight) dot.vy *= -1;
+
+        dot.x = Math.max(0, Math.min(canvasWidth, dot.x));
+        dot.y = Math.max(0, Math.min(canvasHeight, dot.y));
+      });
+
+      for (let i = 0; i < networkDots.length; i += 1) {
+        for (let j = i + 1; j < networkDots.length; j += 1) {
+          const first = networkDots[i];
+          const second = networkDots[j];
+          const dx = first.x - second.x;
+          const dy = first.y - second.y;
+          const distance = Math.hypot(dx, dy);
+
+          if (distance < 120) {
+            const alpha = (1 - distance / 120) * 0.34;
+            heroContext.strokeStyle = `rgba(255, 255, 255, ${alpha})`;
+            heroContext.lineWidth = 1;
+            heroContext.beginPath();
+            heroContext.moveTo(first.x, first.y);
+            heroContext.lineTo(second.x, second.y);
+            heroContext.stroke();
+          }
+        }
+      }
+
+      networkDots.forEach((dot) => {
+        heroContext.fillStyle = "rgba(255, 255, 255, 0.88)";
+        heroContext.beginPath();
+        heroContext.arc(dot.x, dot.y, dot.radius, 0, Math.PI * 2);
+        heroContext.fill();
+      });
+
+      animationFrameId = window.requestAnimationFrame(drawHeroNetwork);
+    };
+
+    resizeHeroCanvas();
+    drawHeroNetwork();
+    window.addEventListener("resize", resizeHeroCanvas, { passive: true });
+    window.addEventListener("beforeunload", () => {
+      window.cancelAnimationFrame(animationFrameId);
+    });
+
+    window.addEventListener("load", () => {
+      window.setTimeout(() => {
+        pageLoader.classList.add("done");
+        document.body.classList.remove("is-loading");
+      }, 1500);
+    });
+  </script>
+</body>
+</html>
