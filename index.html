@@ -1484,9 +1484,9 @@ body.admin-mode .avatar-reset {
     <p>The Penta Minds research team is a living, growing collective. This website is updated consistently as we take on new research topics, challenges, and collaborations. Some sections may be incomplete or subject to change as our work evolves. Thank you for your patience and interest in our research.</p>
     <div class="maintenance-tags">
       <span>AI Research in progress</span>
-      <span>GPAI AI Grand Challenge 2026</span>
+      <span>AI Grand Challenge 2026</span>
       <span>Toolkit being built</span>
-      <span>Field data collection active</span>
+      <span>Data collection active</span>
       <span>Content updates ongoing</span>
     </div>
     <div class="maintenance-footer">
@@ -1533,9 +1533,7 @@ body.admin-mode .avatar-reset {
         <h2>How Learning is happening through AI Without being Taught?</h2>
         <p>A Student Research Initiative | GPAI India Student Community</p>
         <div class="button-row">
-          <!-- UPDATE: add link here -->
           <a class="btn btn-orange" href="#survey">Take the Survey</a>
-          <!-- UPDATE: add link here -->
           <a class="btn btn-white-outline" href="#toolkit">Download Toolkit</a>
         </div>
       </div>
@@ -1857,7 +1855,7 @@ body.admin-mode .avatar-reset {
   </footer>
 
   <script>
-const MAINTENANCE_MODE = false;
+const MAINTENANCE_MODE = true;
 const maintenanceEl = document.getElementById("maintenance-mode");
 const mainSiteEl = document.getElementById("main-site");
 if (MAINTENANCE_MODE) {
@@ -2157,7 +2155,7 @@ if (MAINTENANCE_MODE) {
       }, 1500);
     });
 
-   <!-- const ADMIN_PASSWORD = "hello@pentaminds";
+   const ADMIN_PASSWORD = "hello@pentaminds";
 
 const adminTrigger = document.getElementById("admin-trigger");
 const adminPanel = document.getElementById("admin-panel");
@@ -2187,11 +2185,11 @@ adminLoginBtn.addEventListener("click", () => {
 
 adminPasswordInput.addEventListener("keydown", (e) => {
   if (e.key === "Enter") adminLoginBtn.click();
-}); -->
+}); 
 
   </script>
 
- <!-- <div id="admin-panel" style="position:fixed;bottom:24px;right:24px;z-index:9000;display:none;flex-direction:column;gap:10px;background:#0D2145;padding:20px 24px;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.28);">
+ <div id="admin-panel" style="position:fixed;bottom:24px;right:24px;z-index:9000;display:none;flex-direction:column;gap:10px;background:#0D2145;padding:20px 24px;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.28);">
   <p style="color:#fff;font-size:13px;font-weight:700;margin:0 0 6px;">Admin Access</p>
   <input id="admin-password-input" type="password" placeholder="Enter password" style="padding:9px 14px;border-radius:6px;border:none;font-size:14px;width:200px;outline:none;">
   <button id="admin-login-btn" style="background:#E87722;color:#fff;border:none;border-radius:6px;padding:9px 14px;font-weight:800;font-size:14px;cursor:pointer;">Unlock</button>
@@ -2201,7 +2199,7 @@ adminPasswordInput.addEventListener("keydown", (e) => {
 
 <button id="admin-trigger" title="Admin" style="position:fixed;bottom:24px;right:24px;z-index:8999;width:42px;height:42px;border-radius:50%;background:#0D2145;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;">
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-</button> -->
+</button> 
   
 </div>
 </body>
