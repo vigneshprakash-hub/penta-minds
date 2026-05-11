@@ -1463,6 +1463,127 @@ body.admin-mode .avatar-reset {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.35; }
 }
+
+    .admin-access-btn {
+      align-items: center;
+      background: var(--navy);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 50%;
+      bottom: 24px;
+      box-shadow: 0 12px 32px rgba(10, 26, 53, 0.24);
+      color: var(--white);
+      display: inline-flex;
+      font-size: 1.25rem;
+      height: 46px;
+      justify-content: center;
+      position: fixed;
+      right: 24px;
+      transition: background 180ms ease, transform 180ms ease, opacity 180ms ease;
+      width: 46px;
+      z-index: 9000;
+    }
+
+    .admin-access-btn:hover,
+    .admin-access-btn:focus-visible {
+      background: var(--orange);
+      transform: translateY(-2px);
+    }
+
+    body.admin-mode .admin-access-btn {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .admin-modal {
+      align-items: center;
+      background: rgba(10, 26, 53, 0.58);
+      display: none;
+      inset: 0;
+      justify-content: center;
+      padding: 20px;
+      position: fixed;
+      z-index: 9100;
+    }
+
+    .admin-modal.open {
+      display: flex;
+    }
+
+    .admin-dialog {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: 0 22px 70px rgba(10, 26, 53, 0.28);
+      max-width: 360px;
+      padding: 24px;
+      width: min(100%, 360px);
+    }
+
+    .admin-dialog h2 {
+      color: var(--navy);
+      font-family: var(--heading);
+      font-size: 1.45rem;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .admin-dialog p {
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 16px;
+    }
+
+    .admin-dialog label {
+      color: var(--navy);
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .admin-dialog input {
+      border: 1px solid rgba(13, 33, 69, 0.16);
+      border-radius: var(--radius);
+      color: var(--navy);
+      font: inherit;
+      padding: 10px 12px;
+      width: 100%;
+    }
+
+    .admin-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+      margin-top: 18px;
+    }
+
+    .admin-actions button {
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      font-weight: 800;
+      padding: 10px 14px;
+    }
+
+    .admin-cancel-btn {
+      background: rgba(13, 33, 69, 0.08);
+      color: var(--navy);
+    }
+
+    .admin-login-btn {
+      background: var(--orange);
+      color: var(--white);
+    }
+
+    .admin-error {
+      color: #c2410c;
+      display: none;
+      font-size: 0.82rem;
+      font-weight: 700;
+      margin: 10px 0 0;
+    }
+
+    .admin-error.visible {
+      display: block;
+    }
   </style>
 </head>
 <body class="is-loading">
@@ -1855,7 +1976,7 @@ body.admin-mode .avatar-reset {
   </footer>
 
   <script>
-const MAINTENANCE_MODE = true;
+const MAINTENANCE_MODE = false;
 const maintenanceEl = document.getElementById("maintenance-mode");
 const mainSiteEl = document.getElementById("main-site");
 if (MAINTENANCE_MODE) {
@@ -2155,52 +2276,79 @@ if (MAINTENANCE_MODE) {
       }, 1500);
     });
 
-   const ADMIN_PASSWORD = "hello@pentaminds";
+    const ADMIN_PASSWORD = "hello@pentaminds";
 
-const adminTrigger = document.getElementById("admin-trigger");
-const adminPanel = document.getElementById("admin-panel");
-const adminLoginBtn = document.getElementById("admin-login-btn");
-const adminPasswordInput = document.getElementById("admin-password-input");
-const adminError = document.getElementById("admin-error");
+    window.addEventListener("DOMContentLoaded", () => {
+      const adminAccessButton = document.getElementById("admin-access-btn");
+      const adminModal = document.getElementById("admin-modal");
+      const adminLoginButton = document.getElementById("admin-login-btn");
+      const adminCancelButton = document.getElementById("admin-cancel-btn");
+      const adminPasswordInput = document.getElementById("admin-password-input");
+      const adminError = document.getElementById("admin-error");
 
-adminTrigger.addEventListener("click", () => {
-  adminPanel.style.display = "flex";
-  adminTrigger.style.display = "none";
-  adminPasswordInput.focus();
-});
+      if (!adminAccessButton || !adminModal || !adminLoginButton || !adminCancelButton || !adminPasswordInput || !adminError) return;
 
-adminLoginBtn.addEventListener("click", () => {
-  if (adminPasswordInput.value === ADMIN_PASSWORD) {
-    document.body.classList.add("admin-mode");
-    adminPanel.style.display = "none";
-    adminTrigger.style.display = "none";
-    adminError.style.display = "none";
-    adminPasswordInput.value = "";
-  } else {
-    adminError.style.display = "block";
-    adminPasswordInput.value = "";
-    adminPasswordInput.focus();
-  }
-});
+      const openAdminModal = () => {
+        adminError.classList.remove("visible");
+        adminPasswordInput.value = "";
+        adminModal.classList.add("open");
+        adminModal.setAttribute("aria-hidden", "false");
+        window.setTimeout(() => adminPasswordInput.focus(), 0);
+      };
 
-adminPasswordInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") adminLoginBtn.click();
-}); 
+      const closeAdminModal = () => {
+        adminModal.classList.remove("open");
+        adminModal.setAttribute("aria-hidden", "true");
+        adminPasswordInput.value = "";
+        adminError.classList.remove("visible");
+      };
+
+      const unlockAdminMode = () => {
+        if (adminPasswordInput.value === ADMIN_PASSWORD) {
+          document.body.classList.add("admin-mode");
+          closeAdminModal();
+          return;
+        }
+
+        adminError.classList.add("visible");
+        adminPasswordInput.value = "";
+        adminPasswordInput.focus();
+      };
+
+      adminAccessButton.addEventListener("click", openAdminModal);
+      adminLoginButton.addEventListener("click", unlockAdminMode);
+      adminCancelButton.addEventListener("click", closeAdminModal);
+
+      adminPasswordInput.addEventListener("keydown", (event) => {
+        if (event.key === "Enter") unlockAdminMode();
+        if (event.key === "Escape") closeAdminModal();
+      });
+
+      adminModal.addEventListener("click", (event) => {
+        if (event.target === adminModal) closeAdminModal();
+      });
+    });
 
   </script>
 
- <div id="admin-panel" style="position:fixed;bottom:24px;right:24px;z-index:9000;display:none;flex-direction:column;gap:10px;background:#0D2145;padding:20px 24px;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.28);">
-  <p style="color:#fff;font-size:13px;font-weight:700;margin:0 0 6px;">Admin Access</p>
-  <input id="admin-password-input" type="password" placeholder="Enter password" style="padding:9px 14px;border-radius:6px;border:none;font-size:14px;width:200px;outline:none;">
-  <button id="admin-login-btn" style="background:#E87722;color:#fff;border:none;border-radius:6px;padding:9px 14px;font-weight:800;font-size:14px;cursor:pointer;">Unlock</button>
-  <p id="admin-error" style="color:#ff6b6b;font-size:12px;margin:0;display:none;">Incorrect password.</p>
-  <button onclick="document.getElementById('admin-panel').style.display='none';document.getElementById('admin-trigger').style.display='flex';" style="background:transparent;color:rgba(255,255,255,0.5);font-size:12px;border:none;cursor:pointer;margin-top:4px;">Cancel</button>
 </div>
 
-<button id="admin-trigger" title="Admin" style="position:fixed;bottom:24px;right:24px;z-index:8999;width:42px;height:42px;border-radius:50%;background:#0D2145;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-</button> 
-  
+<div id="admin-modal" class="admin-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="admin-modal-title">
+  <div class="admin-dialog">
+    <h2 id="admin-modal-title">Admin Access</h2>
+    <p>Enter the admin password to manage team photos.</p>
+    <label for="admin-password-input">Password</label>
+    <input id="admin-password-input" type="password" autocomplete="current-password">
+    <p id="admin-error" class="admin-error">Incorrect password.</p>
+    <div class="admin-actions">
+      <button id="admin-cancel-btn" class="admin-cancel-btn" type="button">Cancel</button>
+      <button id="admin-login-btn" class="admin-login-btn" type="button">Unlock</button>
+    </div>
+  </div>
 </div>
+
+<button id="admin-access-btn" class="admin-access-btn" aria-label="Admin Access">
+  ⚙
+</button>
 </body>
 </html>
